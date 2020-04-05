@@ -1,0 +1,40 @@
+{% extends "public_html.html" %}
+{% block title %}
+    电影网站 | {{ page_title }}
+{% endblock %}
+{% block nav_index_active %}active{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-4 col-xs-offset-4">
+                  <div class="panel panel-default">
+                      <div class="panel-heading">
+                          <h3 class="panel-title">{{ form_title }}</h3>
+                      </div>
+                      <div class="panel-body">
+                          <form action=""  method="POST">
+                            {% csrf_token %}
+                             <!--去除冒号-->
+                            {% for filte in form %}
+                              {% if not filter.is_hidden %}
+                                <label for="{{ filte.id_for_label }}">{{ filte.label }}</label>
+                              {% endif %}
+                                {{ filte }}
+                              <!--输出错误信息为红色-->
+                              <p class="text-danger">{{ filte.errors.as_text }}</p>
+                            {% endfor %}
+                            <span id="tip" class="text-danger">{{ form.non_field_errors }}</span>
+                            <div class="cleanfix"></div>
+                            <div class="pull-left">
+                              {% block other_buttons %}{% endblock %}
+                            </div>
+                            <input type="submit" name="{{ submit_text }}" class="btn btn-primary pull-rigth">
+                            <button class="btn btn-default" onclick="window.location.href='{{ return_back }}'">返回</button>
+                          </form>
+                      </div>
+                  </div>
+            </div>
+        </div>
+    </div> 
+{% endblock %}
+

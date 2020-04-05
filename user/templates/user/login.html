@@ -1,0 +1,55 @@
+{% extends "public_html.html" %}
+{% load static %}
+{% load user_tags %}
+{% block title %}
+    电影网站 | 登陆
+{% endblock %}
+{% block nav_index_active %}active{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-4 col-xs-offset-4">
+                {% if not user.is_authenticated %}
+                  <div class="panel panel-default">
+                      <div class="panel-heading">
+                          <h3 class="panel-title">登录</h3>
+                      </div>
+                      <div class="panel-body">
+                          <form action=""  method="POST">
+                            {% csrf_token %}
+                             <!--去除冒号-->
+                            {% for filte in login_form %}
+                              <label for="{{ filte.id_for_label }}">{{ filte.label }}</label>
+                              {% if filte.id_for_label == 'id_password' %}
+                                (<a href="{% url 'forget_passwd' %}" tabindex="-1">忘记密码？</a>)
+                              {% endif %}
+                              {{ filte }}
+                              <!--输出错误信息为红色-->
+                              <p class="text-danger">{{ filte.errors.as_text }}</p>
+                            {% endfor %}
+                            <span id="tip" class="pull-left text-danger">{{ login_form.non_field_errors }}</span>
+                            <div class="clearfix"></div>
+                              <a href="{% get_qq_url %}">
+                                <img src="{% static 'user/qq登录.png' %}">
+                                使用QQ登录
+                              </a>
+                            <input type="submit" value="登录" class="btn btn-primary pull-rigth">
+                          </form>
+                      </div>
+                  </div>
+                  {% if request.GET.from %}
+                    <a style="text-align: center; display: block;" href="{% url 'register' %}?from={{ request.GET.from }}">前往注册 &gt;&gt;</a>
+                  {% else %}
+                    <a style="text-align: center; display: block;" href="{% url 'register' %}?from={{ request.get_full_path }}">前往注册 &gt;&gt;</a>
+                  {% endif %} 
+                {% else %}
+                  <span>已登录，跳转到首页</span>
+                    <script type="text/javascript">
+                      window.location.href = '/';
+                    </script>
+                {% endif %}
+            </div>
+        </div>
+    </div> 
+{% endblock %}
+

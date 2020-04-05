@@ -1,0 +1,17 @@
+配置步骤：
+1.安装python3.7.4
+2.修改pip源：https://blog.csdn.net/qq_31443999/article/details/88750833
+3.安装django以及配件：
+pip install virtualenv
+4.推荐你一个好用极好看的编码神器：sublime Text 3
+破解方法：https://blog.csdn.net/Byweiker/article/details/89284448
+基本使用方法以及汉化：https://blog.csdn.net/cnds123321/article/details/84452221，下载对应的插件得翻墙。如果允许的话就用这个。
+5.如果没有外网也不要紧，用哪个python自带的编辑器也行。
+6. 然后在你的某个盘中创建虚拟环境。cmd  进入到某个目录：virtualenv  my_virtualenv，将项目解压到my_virtualenv之下。
+7.cmd  进入到my_virtualenv之下：执行下面的命令：
+pip install django==2.2
+pip install django-ckeditor
+pip install django-notification-hq
+8.安装之后，执行：Scripts\activate,进入到myblogs中，执行下面的命令，启动项目：python manage.py runserver
+9.浏览器输入127.0.0.1:8000即可访问。
+对应的软件在另一个（软件）文件夹中。

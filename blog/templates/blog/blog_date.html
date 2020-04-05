@@ -1,0 +1,10 @@
+{% extends 'blog/blog_list.html' %}
+
+{# 页面标题 #}
+{% block title %}{{ blog_type.type_name }}{% endblock %}
+
+{% block blog_type_title %}
+        日期归档:{{ blog_with_date }}
+        <a href="{% url 'blog_list' %}">查看全部电影</a>
+{% endblock %}
+
